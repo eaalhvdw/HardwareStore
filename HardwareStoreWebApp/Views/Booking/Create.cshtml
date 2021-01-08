@@ -1,0 +1,64 @@
+﻿@model HardwareStoreWebApp.Models.BookingViewModel
+
+@{
+    ViewBag.Title = "Opret Reservation";
+}
+
+<style>
+    .listBox {
+        min-width: 50%;
+    }
+</style>
+
+<h1>Opret Reservation</h1>
+<hr />
+<div>
+    @Html.ActionLink("Tilbage til forsiden", "Index", "Login")
+</div>
+<br />
+
+@using (Html.BeginForm())
+{
+    <h4>Vælg lejeperiode</h4>
+    <br />
+    @Html.LabelFor(model => model.StartDate)
+    <span style="color:red;">
+        &emsp;
+        @Html.EditorFor(model => model.StartDate)
+        &emsp;
+        @Html.ValidationMessageFor(model => model.StartDate)
+    </span>
+    <br />
+    @Html.LabelFor(model => model.EndDate)
+    <span style="color:red;">
+        &emsp;&nbsp;
+        @Html.EditorFor(model => model.EndDate)
+        &emsp;
+        @Html.ValidationMessageFor(model => model.EndDate)
+    </span>
+    <br />
+    <br />
+
+    <h4>Vælg værktøj</h4>
+
+    int _size = 0;
+    foreach (var i in Model.ToolsSelectList.Items)
+    {
+        _size++;
+    }
+    if (_size > 10)
+    {
+        _size = 10;
+    }
+
+    @Html.ListBoxFor(model => model.SelectedTools, Model.ToolsSelectList, htmlAttributes: new { @class = "listBox", size = _size, title = "For at vælge flere værktøjer, hold Ctrl knappen nede, mens du vælger." })
+    <p style="color:red;">
+        @Html.ValidationMessageFor(model => model.SelectedTools)
+    </p>
+    <input type="submit" value="Gennemfør" />
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

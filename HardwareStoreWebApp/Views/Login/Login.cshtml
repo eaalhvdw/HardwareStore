@@ -1,0 +1,35 @@
+﻿@model HardwareStoreLibrary.Models.Customer
+
+
+@{
+    ViewBag.Title = "Log ind";
+}
+
+<h1>Byggemarkedet</h1>
+<hr />
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <h2>Log ind</h2>
+        @Html.LabelFor(model => model.Username)
+        <br />
+        <p style="color:red;">
+            @Html.EditorFor(model => model.Username) &emsp; @Html.ValidationMessageFor(model => model.Username)
+        </p>
+        @Html.LabelFor(model => model.Password)
+        <br />
+        <p style="color:red;">
+            @Html.EditorFor(model => model.Password) &emsp; @Html.ValidationMessageFor(model => model.Password)
+        </p>
+        <p style="color:red;">
+            @Html.DisplayFor(model => model.LoginErrorMsg)
+        </p>
+        <input type="submit" value="Log ind" />
+        <input type="reset" value="Ryd" />
+    }
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

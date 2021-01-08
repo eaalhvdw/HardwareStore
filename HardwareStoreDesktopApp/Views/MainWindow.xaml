@@ -1,0 +1,333 @@
+﻿<Window x:Class="HardwareStoreDesktopApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Byggemarkedets Desktop App" Height="550" Width="800">
+    <Window.Resources>
+        <Style x:Key="Menu" TargetType="{x:Type Menu}">
+            <Setter Property="Background" Value="CadetBlue"/>
+        </Style>
+        <Style x:Key="MenuItem" TargetType="{x:Type MenuItem}">
+            <Setter Property="MinHeight" Value="40"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="Background" Value="PowderBlue"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="HeaderLabel" BasedOn="{StaticResource {x:Type Label}}" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="44"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="SmallerHeaderLabel" BasedOn="{StaticResource {x:Type Label}}" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="MinHeight" Value="15"/>
+        </Style>
+        <Style x:Key="NormalLabel" BasedOn="{StaticResource {x:Type Label}}" TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="BindedLabel" BasedOn="{StaticResource {x:Type Label}}" TargetType="{x:Type Label}">
+            <Setter Property="Padding" Value="5, 0, 10, 0"/>
+        </Style>
+        <Style x:Key="ErrorLabel" BasedOn="{StaticResource {x:Type Label}}" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextElement.Foreground" Value="Red"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style x:Key="InfoLabel" BasedOn="{StaticResource {x:Type Label}}" TargetType="Label">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextElement.Foreground" Value="Green"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style x:Key="ViewBox" TargetType="{x:Type Viewbox}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="4, 0, 0, 0"/>
+            <Setter Property="SelectionBrush" Value="AliceBlue"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="SearchTxtBox" BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
+            <Setter Property="MinWidth" Value="220"/>
+            <Setter Property="MinHeight" Value="25"/>
+            <Setter Property="Margin" Value="0, 0, 4, 0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="PlaceholderSearchTxtBox" BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
+            <Setter Property="Block.Foreground" Value="gray"/>
+            <Setter Property="MinWidth" Value="220"/>
+            <Setter Property="MinHeight" Value="25"/>
+            <Setter Property="Margin" Value="0, 0, 4, 0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="CustomerTxtBox" BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style x:Key="PlaceholderCustomerTxtBox" BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
+            <Setter Property="Block.Foreground" Value="gray"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style x:Key="PasswordBox" TargetType="{x:Type PasswordBox}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="PowderBlue"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5, 0, 5, 2"/>
+        </Style>
+        <Style x:Key="SearchButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+            <Setter Property="TextElement.FontSize" Value="14"/>
+            <Setter Property="MinWidth" Value="60"/>
+            <Setter Property="MinHeight" Value="25"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="EditButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+            <Setter Property="TextElement.FontSize" Value="12"/>
+            <Setter Property="MinWidth" Value="215"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style x:Key="CancelButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+            <Setter Property="TextElement.FontSize" Value="12"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style x:Key="ListBox" TargetType="{x:Type ListBox}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="MaxWidth" Value="262"/>
+        </Style>
+        <Style x:Key="ListItem" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Background" Value="PowderBlue"/>
+            <Setter Property="BorderBrush" Value="AliceBlue"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+    </Window.Resources>
+    
+    <!-- Main Grid -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.01*"/> <!-- 0: Space -->
+            <ColumnDefinition Width="*"/> <!-- 1: All contents -->
+            <ColumnDefinition Width="0.01*"/> <!-- 2: Space -->
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/> <!-- 0: Menu -->
+            <RowDefinition Height="0.4*"/> <!-- 1: ViewBox -> Headline Label -->
+            <RowDefinition Height="0.2*"/> <!-- 2: ViewBox -> SearchGrid -->
+            <RowDefinition Height="0.06*"/> <!-- 3: Separator -->
+            <RowDefinition Height="*"/> <!-- 4: ViewBox -> Customergrid -->
+            <RowDefinition Height="0.1*"/> <!-- 5: Space -->
+        </Grid.RowDefinitions>
+
+        <!-- Menu with one item -->
+        <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Style="{StaticResource Menu}">
+            <MenuItem Header="Opret Kunde" Style="{StaticResource MenuItem}" Click="CreateCustomerButton_Click"></MenuItem>
+        </Menu>
+
+        <!-- Headline in a Viewbox -->
+        <Viewbox Grid.Column="1" Grid.Row="1" Style="{StaticResource ViewBox}">
+            <Label Style="{StaticResource HeaderLabel}">Byggemarkedet</Label>
+        </Viewbox>
+
+        <!-- Search grid in a ViewBox -->
+        <Viewbox Grid.Column="1" Grid.Row="2" Style="{StaticResource ViewBox}">
+            
+            <!-- Search Grid -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/> <!-- 0: Search TextBox -->
+                    <ColumnDefinition Width="0.2*"/> <!-- 1: Search Button -->
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/> <!-- 0: Search Elements -->
+                    <RowDefinition Height="25"/> <!-- 1: Search Error Label -->
+                </Grid.RowDefinitions>
+
+                <!-- Search textbox -->
+                <TextBox 
+                    Name="TxtBoxCustomerId" 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Style="{StaticResource PlaceholderSearchTxtBox}"
+                    GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                    Indtast kundenummer her
+                </TextBox>
+
+                <!-- Search button -->
+                <Button  Grid.Column="1" Grid.Row="0" Style="{StaticResource SearchButton}" Content="Søg" Click="FindCustomerButton_Click"/>
+
+                <!-- SearchErrorlabel -->
+                <Label Name="SearchErrorLabel" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource ErrorLabel}"></Label>
+            </Grid>
+        </Viewbox>
+
+        <!-- Separator -->
+        <Separator Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3"/>
+
+        <!-- Viewbox with CustomerGrid -->
+        <Viewbox Grid.Column="1" Grid.Row="4">
+ 
+            <!-- CustomerGrid -->
+            <Grid Name="CustomerGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/> <!--0: Customer info -->
+                    <ColumnDefinition Width="10"/> <!--1: Space -->
+                    <ColumnDefinition Width="*"/> <!--2: Booking list -->
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/> <!-- 0: Smaller Headline Label -->
+                    <RowDefinition Height="*"/> <!-- 1: Customer info & Booking list -->
+                </Grid.RowDefinitions>
+                
+                <!-- Headline -->
+                <Label Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0" Style="{StaticResource SmallerHeaderLabel}">Kunde information</Label>
+
+                <!-- CustomerIfoGrid -->
+                <Grid Name="CustomerInfoGrid" Grid.Column="0" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/> <!-- 0: Normal labels -->
+                        <ColumnDefinition Width="auto"/> <!-- 1: Binded labels -->
+                        <ColumnDefinition Width="5"/> <!-- 2: Space -->
+                        <ColumnDefinition Width="auto"/> <!-- 3: Textboxes og Errorlabel (hidden) -->
+                        
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/> <!-- 0: Id -->
+                        <RowDefinition Height="*"/> <!-- 1: Name -->
+                        <RowDefinition Height="*"/> <!-- 2: Address -->
+                        <RowDefinition Height="*"/> <!-- 3: Email -->
+                        <RowDefinition Height="*"/> <!-- 4: Username -->
+                        <RowDefinition Height="*"/> <!-- 5: Password (protected) -->
+                        <RowDefinition Height="*"/> <!-- 6: Button Edit/Save & Cancel -->
+                        <RowDefinition Height="*"/> <!-- 7: Infolabel og edit error label-->
+                    </Grid.RowDefinitions>
+
+                    <!-- Normal labels -->
+                    <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource NormalLabel}">Kundenr.</Label>
+                    <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource NormalLabel}">Navn</Label>
+                    <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource NormalLabel}">Adresse</Label>
+                    <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource NormalLabel}">E-mail</Label>
+                    <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource NormalLabel}">Brugernavn</Label>
+                    <Label Grid.Column="0" Grid.Row="5" Style="{StaticResource NormalLabel}">Kodeord</Label>
+
+                    <!-- Binded labels-->
+                    <Label Name="CustomerId" Grid.Column="1" Grid.Row="0" Style="{StaticResource BindedLabel}" Content="{Binding Path=Id}"></Label>
+                    <Label Name="CustomerName" Grid.Column="1" Grid.Row="1" Style="{StaticResource BindedLabel}" Content="{Binding Path=Name}"></Label>
+                    <Label Name="CustomerAddress" Grid.Column="1" Grid.Row="2" Style="{StaticResource BindedLabel}" Content="{Binding Path=Address}"></Label>
+                    <Label Name="CustomerEmail"  Grid.Column="1" Grid.Row="3" Style="{StaticResource BindedLabel}" Content="{Binding Path=Email}"></Label>
+                    <Label Name="CustomerUsername" Grid.Column="1" Grid.Row="4" Style="{StaticResource BindedLabel}" Content="{Binding Path=Username}"></Label>
+                    <Label Name="CustomerPassword"  Grid.Column="1" Grid.Row="5" Style="{StaticResource BindedLabel}" Content="{Binding Path=Password}"></Label>
+
+                    <!-- TextBoxes(Hidden) -->
+                    <TextBox 
+                        Name="TxtBoxCustomerName" 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="1"
+                        Style="{StaticResource PlaceholderCustomerTxtBox}"
+                        GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                        Navn
+                    </TextBox>
+                    <TextBox 
+                        Name="TxtBoxCustomerAddress" 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="2"
+                        Style="{StaticResource PlaceholderCustomerTxtBox}"
+                        GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                        Adresse
+                    </TextBox>
+                    <TextBox 
+                        Name="TxtBoxCustomerEmail" 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="3"
+                        Style="{StaticResource PlaceholderCustomerTxtBox}"
+                        GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                        E-mail
+                    </TextBox>
+                    <TextBox 
+                        Name="TxtBoxCustomerUsername" 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="4"
+                        Style="{StaticResource PlaceholderCustomerTxtBox}"
+                        GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                        Brugernavn
+                    </TextBox>
+                    
+                    <!-- PasswordBox(Hidden) -->
+                    <PasswordBox 
+                        Name="CustomerPassBox" 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="5"
+                        Style="{StaticResource PasswordBox}">
+                    </PasswordBox>
+
+                    <!-- Edit/Save Button(Hidden) -->
+                    <Button Name="EditButton" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Style="{StaticResource EditButton}" Content="Rediger Kunde" Click="EditCustomerButton_Click"/>
+                    
+                    <!-- Cancel Button(Hidden) -->
+                    <Button Name="CancelButton" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="6" Style="{StaticResource CancelButton}" Content="Annuller" Click="CancelButton_Click"/>
+
+                    <!-- Information Label(Hidden) -->
+                    <Label Name="InfoLabel" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" Style="{StaticResource InfoLabel}"></Label>
+
+                    <!-- Error Label(Hidden) -->
+                    <Label Name="EditErrorLabel" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="7" Style="{StaticResource ErrorLabel}"></Label>
+                </Grid>
+
+                <!-- CustomerBookingsGrid -->
+                <Grid Name="CustomerBookingsGrid" Grid.Column="2" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/> <!-- 0: All contents -->
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/> <!-- 0: Normal label -->
+                        <RowDefinition Height="6*"/> <!-- 1: ListBox -->
+                    </Grid.RowDefinitions>
+
+                    <!-- NormalLabel -->
+                    <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource NormalLabel}">Udlejninger</Label>
+
+                    <!-- ListBox with bookings -->
+                    <ListBox 
+                        x:Name="BookingListBox"
+                        Grid.Column="0" 
+                        Grid.Row="1" 
+                        Style="{StaticResource ListBox}"
+                        ItemContainerStyle ="{StaticResource ListItem}"
+                        ItemsSource="{Binding}"
+                        DisplayMemberPath="BookingToString"
+                        MouseDoubleClick="GetBooking_DoubleClick">
+                    </ListBox>
+                </Grid>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Window>

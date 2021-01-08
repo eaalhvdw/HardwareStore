@@ -1,0 +1,179 @@
+﻿<Window x:Class="HardwareStoreDesktopApp.BookingViewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Udlejning" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0, 0, 20, 0"/>
+        </Style>
+        <Style x:Key="HeaderLabel" BasedOn="{StaticResource {x:Type Label}}" TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="NormalLabel" BasedOn="{StaticResource {x:Type Label}}" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="BindedLabel" BasedOn="{StaticResource {x:Type Label}}" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style x:Key="InfoLabel" BasedOn="{StaticResource {x:Type Label}}" TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextElement.Foreground" Value="Green"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style x:Key="ErrorLabel" BasedOn="{StaticResource {x:Type Label}}" TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextElement.Foreground" Value="Red"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style x:Key="ComboBox" TargetType="{x:Type ComboBox}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="MinWidth" Value="120"/>
+            <Setter Property="Padding" Value="5, 2, 5, 4"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="PowderBlue"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5, 2, 5, 4"/>
+        </Style>
+        <Style x:Key="EditButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="10, 0, 5, 0"/>
+        </Style>
+        <Style x:Key="CancelButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Margin" Value="5, 0, 5, 0"/>
+        </Style>
+        <Style x:Key="ListBox" TargetType="{x:Type ListBox}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="MinHeight" Value="80"/>
+            <Setter Property="MinWidth" Value="80"/>
+            <Setter Property="MaxWidth" Value="150"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="0, 5, 0, 0"/>
+        </Style>
+        <Style x:Key="ListItem" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Background" Value="PowderBlue"/>
+            <Setter Property="BorderBrush" Value="AliceBlue"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+    </Window.Resources>
+
+    <!-- Main grid -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.01*"/> <!-- 0: Space -->
+            <ColumnDefinition Width="*"/> <!-- 1: All content -->
+            <ColumnDefinition Width="0.01*"/> <!-- 2: Space -->
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/> <!-- 0: ViewBox -> Headline-->
+            <RowDefinition Height="*"/> <!-- 1: ViewBox -> BookingGrid -->
+            <RowDefinition Height="0.1*"/> <!-- 2: Space -->
+        </Grid.RowDefinitions>
+
+        <!-- Headline in a ViewBox -->
+        <Viewbox Grid.Column="1" Grid.Row="0">
+            <Label Style="{StaticResource HeaderLabel}">Udlejning</Label>
+        </Viewbox>
+
+        <!-- Grid in a ViewBox -->
+        <Viewbox Grid.Column="1" Grid.Row="1">
+
+            <!-- BookingGrid -->
+            <Grid Name="BookingGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/> <!-- 0: Normal labels -->
+                    <ColumnDefinition Width="auto"/> <!-- 1: Binded labels -->
+                    <ColumnDefinition Width="*"/> <!-- 2: Status combobox -->
+                    <ColumnDefinition Width="*"/><!-- 3: Edit/Set status button -->
+                    <ColumnDefinition Width="*"/><!-- 4: Cancel set status button -->
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/> <!-- 0: Booking id -->
+                    <RowDefinition Height="auto"/> <!-- 1: Kunde id -->
+                    <RowDefinition Height="auto"/> <!-- 2: Startdate -->
+                    <RowDefinition Height="auto"/> <!-- 3: Enddate -->
+                    <RowDefinition Height="auto"/> <!-- 4: Timeperiod -->
+                    <RowDefinition Height="auto"/> <!-- 5: Status -->
+                    <RowDefinition Height="auto"/> <!-- 6: Tools label & Info label -->
+                    <RowDefinition Height="*"/> <!-- 7: Tools listbox -->
+                </Grid.RowDefinitions>
+
+                <!-- Normal Labels -->
+                <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource NormalLabel}">Udlejningsid</Label>
+                <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource NormalLabel}">KundeId</Label>
+                <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource NormalLabel}">Startdato</Label>
+                <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource NormalLabel}">Slutdato</Label>
+                <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource NormalLabel}">Varighed</Label>
+                <Label Grid.Column="0" Grid.Row="5" Style="{StaticResource NormalLabel}">Status</Label>
+                <Label Grid.Column="0" Grid.Row="6" Style="{StaticResource NormalLabel}">Værktøjer</Label>
+                
+                <!-- Binded Labels -->
+                <Label Name="BookingId" Grid.Column="1" Grid.Row="0" Style="{StaticResource BindedLabel}" Content="{Binding Path=Id}"></Label>
+                <Label Name="CustomerId" Grid.Column="1" Grid.Row="1" Style="{StaticResource BindedLabel}" Content="{Binding Path=Customer.Id}"></Label>
+                <Label Name="StartDate" Grid.Column="1" Grid.Row="2" Style="{StaticResource BindedLabel}" Content="{Binding Path=StartDate}"></Label>
+                <Label Name="EndDate" Grid.Column="1" Grid.Row="3" Style="{StaticResource BindedLabel}" Content="{Binding Path=EndDate}"></Label>
+                <Label Name="TimePeriod" Grid.Column="1" Grid.Row="4" Style="{StaticResource BindedLabel}" Content="{Binding Path=TimePeriod}"></Label>
+                <Label Name="Status" Grid.Column="1" Grid.Row="5" Style="{StaticResource BindedLabel}" Content="{Binding Path=Status}"></Label>
+
+                <!-- Info Label (Hidden) -->
+                <Label Name="InfoLabel" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="6" Style="{StaticResource InfoLabel}"></Label>
+                
+                <!-- ComboBox(Hidden) -->
+                <ComboBox 
+                    Name="Combo" 
+                    Grid.Column="2" 
+                    Grid.Row="5"
+                    IsEditable="True"
+                    Text="Vælg Status"
+                    IsReadOnly="True"
+                    Style="{StaticResource ComboBox}"
+                    ItemContainerStyle="{StaticResource ListItem}">
+                    <ComboBoxItem>
+                        <TextBlock>Reserveret</TextBlock>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock>Udleveret</TextBlock>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock>Tilbageleveret</TextBlock>
+                    </ComboBoxItem>
+                </ComboBox>
+
+                <!-- Edit Button -->
+                <Button Name="EditButton" Grid.Column="3" Grid.Row="5" Style="{StaticResource EditButton}" Content="Rediger Status" Click="EditStatusButton_Click"/>
+                
+                <!-- Cancel Button (Hidden) -->
+                <Button Name="CancelButton" Grid.Column="4" Grid.Row="5" Style="{StaticResource CancelButton}" Content="Annuller" Click="CancelButton_Click"/>
+
+                <!-- ListbBox -->
+                <ListBox
+                    x:Name="ToolsListBox"
+                    Grid.Column="0" 
+                    Grid.Row="7" 
+                    Style="{StaticResource ListBox}"
+                    ItemsSource="{Binding}"
+                    IsEnabled="False"
+                    DisplayMemberPath="ToolToShortString">
+                </ListBox>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Window>

@@ -1,0 +1,87 @@
+﻿@using System.Globalization;
+@model HardwareStoreLibrary.Models.Booking
+
+@{
+    ViewBag.Title = "Reservation fuldført";
+}
+
+<div>
+    <h1>Byggemarkedet | Din reservation er fuldført! </h1>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Dit kundenummer er @Model.Customer.Id.
+        </dt>
+        <dt>
+            @{
+                string days = "dage";
+                if (Model.TimePeriod == 1)
+                {
+                    days = "dag";
+                }
+            }
+            @Html.DisplayNameFor(model => model.TimePeriod)n varer @Html.DisplayFor(model => model.TimePeriod) @days.
+        </dt>
+        <dt>
+            @{
+                var culture = new CultureInfo("da-DK");
+                string date = Model.StartDate.ToShortDateString();
+                string day = culture.DateTimeFormat.GetDayName(Model.StartDate.DayOfWeek).ToLower();
+            }
+            Din bestilling kan afhentes @day d. @date.
+        </dt>
+    </dl>
+    <br />
+
+    <h4>Din reservation</h4>
+    <span>
+        <b>@Html.DisplayNameFor(model => model.StartDate):</b> 
+        @Html.DisplayFor(model => model.StartDateToString)
+    </span>
+    <br />
+    <span>
+        <b>@Html.DisplayNameFor(model => model.EndDate):</b> 
+        @Html.DisplayFor(model => model.EndDateToString)
+    </span>
+    <br />
+    <br />
+    <b>
+        @Html.DisplayNameFor(model => model.Tools)
+    </b>
+    <table style="min-width:30%;">
+        <tr>
+            <th style="color:slategray; font-size:smaller;">
+                Navn
+            </th>
+            <th style="color:slategrey; font-size:smaller;">
+                Depositum
+            </th>
+            <th style="color:slategrey; font-size:smaller;">
+                Pris Pr. Dag
+            </th>
+        </tr>
+        @foreach (var t in Model.Tools)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => t.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => t.SecurityDeposit) kr.
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => t.DailyPrice) kr.
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <span>
+        <b>@Html.DisplayNameFor(model => model.TotalPrice):</b> @Model.TotalPrice kr.
+    </span>
+    <br />
+    <br />
+    <div>
+        @Html.ActionLink("Tilbage til forsiden", "Index", "Login")
+    </div>
+</div>

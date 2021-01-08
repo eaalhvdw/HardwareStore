@@ -1,0 +1,19 @@
+﻿@model HardwareStoreLibrary.Models.Customer
+
+@{
+    ViewBag.Title = "Forside";
+}
+
+<h1>Byggemarkedet</h1>
+<hr />
+@if (Session["LoggedCustomerName"] != null)
+{
+    <h4>
+        Velkommen @Session["LoggedCustomerName"].ToString()!
+    </h4>
+    <br />
+    <div>
+        @Html.ActionLink("Opret en ny reservation her", "Create", "Booking") &ensp; | &ensp; @Html.ActionLink("Log ud", "LogOut")
+    </div>
+    <br />
+}

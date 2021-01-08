@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareStoreWebApp", "HardwareStoreWebApp\HardwareStoreWebApp.csproj", "{4FA2A5E5-C54D-4B49-ACC8-DCABBC387C1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareStoreDesktopApp", "HardwareStoreDesktopApp\HardwareStoreDesktopApp.csproj", "{B1975AA3-2C2D-4B1C-9D5C-F891AA4C34E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareStoreLibrary", "HardwareStoreLibrary\HardwareStoreLibrary.csproj", "{79D0CFE7-F5D5-4F49-AC41-EBF6B1736A44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FA2A5E5-C54D-4B49-ACC8-DCABBC387C1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FA2A5E5-C54D-4B49-ACC8-DCABBC387C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FA2A5E5-C54D-4B49-ACC8-DCABBC387C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FA2A5E5-C54D-4B49-ACC8-DCABBC387C1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1975AA3-2C2D-4B1C-9D5C-F891AA4C34E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1975AA3-2C2D-4B1C-9D5C-F891AA4C34E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1975AA3-2C2D-4B1C-9D5C-F891AA4C34E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1975AA3-2C2D-4B1C-9D5C-F891AA4C34E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D0CFE7-F5D5-4F49-AC41-EBF6B1736A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D0CFE7-F5D5-4F49-AC41-EBF6B1736A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D0CFE7-F5D5-4F49-AC41-EBF6B1736A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D0CFE7-F5D5-4F49-AC41-EBF6B1736A44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Validation.6.0.1304.0\lib\NET45
+		SolutionGuid = {355CC175-CED8-4AA2-8A28-93D0C9B9655D}
+	EndGlobalSection
+EndGlobal
